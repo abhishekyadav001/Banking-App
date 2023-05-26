@@ -10,7 +10,6 @@ import {
   Heading,
   useColorModeValue,
   VStack,
-  HStack,
   Text,
   useToast,
 } from "@chakra-ui/react";
@@ -22,14 +21,14 @@ import { loginAPI } from "../Redux/Auth/action";
 const initData = { email: "", password: "" };
 
 const Login = () => {
-  const { isLoading, accessToken } = useSelector((store) => store.auth);
+  const { isLoading, token } = useSelector((store) => store.auth);
   const [formData, setFormData] = useState(initData);
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (accessToken) {
+    if (token) {
       toast({
         title: "Login Successfull",
         status: "success",
@@ -39,7 +38,7 @@ const Login = () => {
       navigate("/");
       return;
     }
-  }, [accessToken]);
+  }, [token]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -47,6 +46,7 @@ const Login = () => {
   };
   const handleForm = (e) => {
     e.preventDefault();
+    console.log("hi");
     dispatch(loginAPI(formData))
       .then((res) => {})
       .catch((err) => {

@@ -7,7 +7,7 @@ const initData = {
   errorMessage: "",
   signupStatus: false,
   auth: getLocalStorageItem("accessToken") || "",
-  accessToken: getLocalStorageItem("accessToken") || "",
+  token: getLocalStorageItem("accessToken") || "",
 };
 
 export const authReducer = (state = initData, { type, payload }) => {
@@ -23,14 +23,14 @@ export const authReducer = (state = initData, { type, payload }) => {
         errorMessage: payload,
       };
     case types.LOGIN_SUCCESS:
-      setLocalStorageItem("accessToken", payload.accessToken);
-      setLocalStorageItem("refreshToken", payload.refreshToken);
-      return { ...state, isLoading: false, accessToken: payload.accessToken };
+      console.log(payload);
+      setLocalStorageItem("accessToken", payload);
+      return { ...state, isLoading: false, token: payload };
     case types.SIGNUP_SUCCESS:
       return { ...state, isLoading: false, signupStatus: true };
     case types.ACCOUNT_LOGOUT:
       clearLocalStorage();
-      return { ...state, isLoading: false, accessToken: "", auth: "" };
+      return { ...state, isLoading: false, token: "", auth: "" };
     default:
       return state;
   }
