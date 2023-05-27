@@ -4,7 +4,7 @@ const accountSchema = new mongoose.Schema(
   {
     id: { type: String, required: true },
     amount: { type: Number, required: true },
-    status: { Enumerator: ["Deposit", "Withdraw"], required: true },
+    status: { type: String, required: true },
   },
   { timestamps: true }
 );
