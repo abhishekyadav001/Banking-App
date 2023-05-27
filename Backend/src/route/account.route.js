@@ -15,4 +15,8 @@ accountRouter.post("/transfer", async (req, res) => {
     res.status(401).send(error.message);
   }
 });
+
+accountRouter.get("/app", async (req, res) => {
+  res.send("heelo");
+});
 module.exports = { accountRouter };
