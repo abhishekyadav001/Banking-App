@@ -4,14 +4,40 @@ import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Transaction from "../Pages/Transaction";
 import Home from "../Pages/Home";
+import Accounts from "../Pages/Accounts";
+import PrivateRoute from "../Components/PrivateRoute";
+import Profile from "../Pages/Profile";
 
 const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/transaction" element={<Transaction />} />
+      <Route
+        path="/transaction"
+        element={
+          <PrivateRoute>
+            <Transaction />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/account"
+        element={
+          <PrivateRoute>
+            <Accounts />
+          </PrivateRoute>
+        }
+      />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 };

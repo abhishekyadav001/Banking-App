@@ -6,6 +6,7 @@ const initData = {
   isError: false,
   errorMessage: "",
   signupStatus: false,
+  accountBalance: 0,
   auth: getLocalStorageItem("accessToken") || "",
   token: getLocalStorageItem("accessToken") || "",
 };
@@ -23,7 +24,6 @@ export const authReducer = (state = initData, { type, payload }) => {
         errorMessage: payload,
       };
     case types.LOGIN_SUCCESS:
-      console.log(payload);
       setLocalStorageItem("accessToken", payload);
       return { ...state, isLoading: false, token: payload };
     case types.SIGNUP_SUCCESS:
@@ -31,6 +31,13 @@ export const authReducer = (state = initData, { type, payload }) => {
     case types.ACCOUNT_LOGOUT:
       clearLocalStorage();
       return { ...state, isLoading: false, token: "", auth: "" };
+    case types.CHECKBALANCE_REQUEST:
+      return { ...state, isLoading: true };
+    case types.CHECKBALANCE_SUCCESS:
+      console.log(payload);
+      return { ...state, isLoading: false, accountBalance: payload };
+    case types.CHECKBALANCE_FAILED:
+      return { ...state, isError: true };
     default:
       return state;
   }

@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function Accounts(props) {
-    return (
-        <div>
-            
-        </div>
-    );
+  return <div>Account</div>;
 }
 
 export default Accounts;

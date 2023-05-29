@@ -22,14 +22,14 @@ const initData = { firstName: "", lastName: "", email: "", password: "" };
 
 const Signup = () => {
   const [formData, setFormData] = useState(initData);
-  const { isLoading, accessToken } = useSelector((store) => store.auth);
+  const { isLoading, token } = useSelector((store) => store.auth);
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (accessToken) navigate("/");
-  }, [accessToken]);
+    if (token) navigate("/");
+  }, [token]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;

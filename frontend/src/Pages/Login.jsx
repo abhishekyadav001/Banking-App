@@ -35,7 +35,7 @@ const Login = () => {
         duration: 3000,
         isClosable: true,
       });
-      navigate("/");
+      navigate("/transaction");
       return;
     }
   }, [token]);
@@ -46,7 +46,6 @@ const Login = () => {
   };
   const handleForm = (e) => {
     e.preventDefault();
-    console.log("hi");
     dispatch(loginAPI(formData))
       .then((res) => {})
       .catch((err) => {
