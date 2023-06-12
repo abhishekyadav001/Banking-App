@@ -6,11 +6,20 @@ const userModel = require("../model/users.model");
 const transactionRouter = express.Router();
 transactionRouter.use(authMiddleware);
 transactionRouter.get("/", async (req, res) => {
-  try {
-    const alltransactions = await transactionModel.find();
+  const { userID } = req.body;
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+  const totaltransaction = await transactionModel.countDocuments({ userID }).skip(skip).limit(limit).exec();
 
-    res.status(201).send({ msg: "all user is get successfully", " payload": { alltransactions } });
-  } catch (error) {}
+  const totalPages = Math.ceil(totaltransaction / limit);
+
+  try {
+    const alltransactions = await transactionModel.find({ userID }).skip(skip).limit(limit).exec();
+    res.status(201).send({ msg: "all trasaction history available now", alltransactions, totalPages });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 transactionRouter.post("/", async (req, res) => {
@@ -24,7 +33,6 @@ transactionRouter.post("/", async (req, res) => {
 
     if (type == "Deposit") {
       const newAmount = currentBalance + amount;
-
       const users = await userModel.findByIdAndUpdate(userID, { $set: { balance: newAmount } });
     } else {
       const newAmount = currentBalance - amount;

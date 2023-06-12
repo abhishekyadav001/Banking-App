@@ -59,7 +59,7 @@ async function userLoginController(email, password) {
 }
 
 function userLogoutController(token) {
-  if (!token) {
+  if (!token) { 
     return {
       status: 404,
       payload: { msg: "Token Not Found" },
