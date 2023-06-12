@@ -29,7 +29,7 @@ export const checkBalance = () => async (dispatch) => {
   try {
     const res = await axiosInstance.get("/users/");
 
-    dispatch({ type: types.CHECKBALANCE_SUCCESS, payload: res.data.payload });
+    dispatch({ type: types.CHECKBALANCE_SUCCESS, payload: res.data.balanceAmount });
   } catch (error) {
     dispatch({ type: types.CHECKBALANCE_FAILED, payload: error.response.data.message });
     return Promise.reject(error.response.data.message);

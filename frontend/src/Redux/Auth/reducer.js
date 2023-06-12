@@ -34,7 +34,6 @@ export const authReducer = (state = initData, { type, payload }) => {
     case types.CHECKBALANCE_REQUEST:
       return { ...state, isLoading: true };
     case types.CHECKBALANCE_SUCCESS:
-      console.log(payload);
       return { ...state, isLoading: false, accountBalance: payload };
     case types.CHECKBALANCE_FAILED:
       return { ...state, isError: true };

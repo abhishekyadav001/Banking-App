@@ -21,9 +21,10 @@ import {
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import { depositAmount } from "../Redux/Trasaction/action";
+import { transactionAmount } from "../Redux/Trasaction/action";
 
 import { checkBalance } from "../Redux/Auth/action";
+import TransactionAmounts from "../Components/TransactionAmounts";
 
 function Transaction(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,7 +43,7 @@ function Transaction(props) {
   };
 
   const handleEvent = () => {
-    dispatch(depositAmount(amount))
+    dispatch(transactionAmount(amount))
       .then((res) => {
         toast({
           title: "Transaction Successfull",
@@ -73,7 +74,7 @@ function Transaction(props) {
     }
   };
   return (
-    <Box display={"flex"} justifyContent={"center"}>
+    <VStack display={"flex"} justifyContent={"center"}>
       <Box width={"70%"}>
         <VStack align={"flex-start"}>
           <Heading>Transaction Page</Heading>
@@ -148,7 +149,10 @@ function Transaction(props) {
           </ModalContent>
         </Modal>
       </Box>
-    </Box>
+      <Box>
+        <TransactionAmounts />
+      </Box>
+    </VStack>
   );
 }
 
