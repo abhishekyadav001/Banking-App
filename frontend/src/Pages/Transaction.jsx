@@ -65,7 +65,7 @@ function Transaction(props) {
   };
   useEffect(() => {
     getcurrentBalance();
-  }, [amount]);
+  }, [amount, isOpen, onClose]);
   const getcurrentBalance = async () => {
     try {
       dispatch(checkBalance());

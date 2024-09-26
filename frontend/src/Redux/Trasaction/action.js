@@ -21,7 +21,9 @@ export const getTransactionHistory = (creds) => async (dispatch) => {
   dispatch({ type: types.TRANSACTION_HISTORY_REQUEST });
   try {
     const res = await axiosInstance.get(`/transaction?page=${page}&limit=${limit}`);
-    dispatch({ type: types.TRANSACTION_HISTORY_SUCCESSFULLL, payload: res.data.alltransactions });
+    console.log(res);
+
+    dispatch({ type: types.TRANSACTION_HISTORY_SUCCESSFULLL, payload: res.data });
   } catch (error) {
     dispatch({ type: types.TRANSACTION_HISTORY_FAILED, payload: error.message });
     return Promise.reject(error.message);

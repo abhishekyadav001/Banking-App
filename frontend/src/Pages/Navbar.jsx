@@ -57,7 +57,7 @@ const Navbar = () => {
   };
 
   return (
-    <Box px={4} py={3} position={"sticky"} top={"1px"} bgColor={"white"} border={"black 1px solid"}>
+    <Box px={4} zIndex={999} py={3} position={"sticky"} top={"1px"} bgColor={"white"} border={"black 1px solid"}>
       <Flex alignItems="center" maxWidth="800px" mx={"auto"}>
         <Link as={RichLink} to="/">
           <Image width={"30px"} src={logo} />

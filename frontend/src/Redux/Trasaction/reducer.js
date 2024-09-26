@@ -4,6 +4,7 @@ const initData = {
   isLoading: false,
   isError: false,
   errorMessage: "",
+  totalpages: 1,
   transactionHistory: [],
 };
 
@@ -18,7 +19,7 @@ export const transactionReducer = (state = initData, { type, payload }) => {
     case types.TRANSACTION_HISTORY_REQUEST:
       return { ...state, isLoading: true };
     case types.TRANSACTION_HISTORY_SUCCESSFULLL:
-      return { ...state, transactionHistory: payload };
+      return { ...state, transactionHistory: payload.alltransactions, totalpages: payload.totalPages };
     case types.TRANSACTION_HISTORY_FAILED:
       return { ...state, isError: true, errorMessage: payload.message };
     default:

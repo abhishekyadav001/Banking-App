@@ -47,7 +47,9 @@ const Login = () => {
   const handleForm = (e) => {
     e.preventDefault();
     dispatch(loginAPI(formData))
-      .then((res) => {})
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => {
         toast({
           title: err,
