@@ -22,10 +22,17 @@ async function userSignupController(username, email, password) {
       payload: { msg: "User Signup Successfuly" },
     };
   } catch (error) {
-    return {
-      status: 403,
-      payload: { msg: error.message },
-    };
+    if (error.code == 11000) {
+      return {
+        status: 400,
+        payload: { msg: "Email already exists" },
+      };
+    } else {
+      return {
+        status: 403,
+        payload: { msg: error.message },
+      };
+    }
   }
 }
 
@@ -59,7 +66,7 @@ async function userLoginController(email, password) {
 }
 
 function userLogoutController(token) {
-  if (!token) { 
+  if (!token) {
     return {
       status: 404,
       payload: { msg: "Token Not Found" },

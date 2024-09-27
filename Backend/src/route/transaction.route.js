@@ -9,8 +9,9 @@ transactionRouter.get("/", async (req, res) => {
   const { userID } = req.body;
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
+  
   const skip = (page - 1) * limit;
-  const totaltransaction = await transactionModel.countDocuments({ userID }).skip(skip).limit(limit).exec();
+  const totaltransaction = await transactionModel.countDocuments({ userID });
 
   const totalPages = Math.ceil(totaltransaction / limit);
 
