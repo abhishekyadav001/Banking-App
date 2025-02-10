@@ -1,2 +1,2 @@
 # App
-This is an a bank app. So this is a assignment.
+This is an a bank app.
